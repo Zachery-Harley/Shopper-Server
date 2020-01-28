@@ -14,4 +14,11 @@ public class ItemService {
         return item;
     }
 
+    public Item getById(String itemId) {
+        Item item = new Item();
+        item.setBarcode("1010101010101010");
+        item.setId(itemId);
+        item.setName("Beans");
+        return item;
+    }
 }

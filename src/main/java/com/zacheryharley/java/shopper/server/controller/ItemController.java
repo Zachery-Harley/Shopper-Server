@@ -1,5 +1,6 @@
 package com.zacheryharley.java.shopper.server.controller;
 
+import com.zacheryharley.java.shopper.server.model.Item;
 import com.zacheryharley.java.shopper.server.model.ItemRepresentation;
 import com.zacheryharley.java.shopper.server.model.assembler.ItemRepresentationAssembler;
 import com.zacheryharley.java.shopper.server.service.ItemService;
@@ -21,6 +22,11 @@ public class ItemController {
     public ItemRepresentation getItemByBarcode(@PathVariable String barcode) {
         ItemRepresentationAssembler model = new ItemRepresentationAssembler();
         return model.toModel(itemService.getByBarcode(barcode));
+    }
+
+    @GetMapping(path = "/{itemId}")
+    public Item getItem(@PathVariable String itemId) {
+        return itemService.getById(itemId);
     }
 
 }
