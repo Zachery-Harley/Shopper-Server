@@ -19,14 +19,15 @@ jobs:
           java-version: 1.8
       - name: Run Tests
         run: mvn -B test
-      - name: Run Tests
-        run: mvn -B package
+      - name: Package
+        run: mvn -B package -DskipTests
 
       - name: Build Docker Image
         run: docker build . --file Dockerfile --tag quick-list-server:latest-unstable
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: myDocker/repository
+          name: zacheryharley/quick-list
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+          tags: "develop"
