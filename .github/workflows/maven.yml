@@ -1,12 +1,14 @@
-name: Java CI
+name: Tests
 
-on: [push]
+on:
+  push:
+    branches-ignore:
+      - relase/*
+      - master
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 1.8
@@ -14,4 +16,4 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B test
